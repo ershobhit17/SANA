@@ -198,7 +198,7 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
                     color: tokens.primary,
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 8),
                 Expanded(
                   child: _buildMetricTile(
                     label: 'Saved Links',
@@ -207,7 +207,7 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
                     color: tokens.secondary,
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 8),
                 Expanded(
                   child: _buildMetricTile(
                     label: 'Pinned',
@@ -304,42 +304,50 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
   }) {
     final tokens = context.themeTokens;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: tokens.cardColor,
         borderRadius: BorderRadius.circular(tokens.cardRadius),
         border: Border.all(color: tokens.borderColor),
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(7),
+            padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
               color: color.withOpacity(0.15),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, color: color, size: 18),
+            child: Icon(icon, color: color, size: 16),
           ),
-          const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                value,
-                style: context.getTextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: tokens.textPrimary,
+          const SizedBox(width: 6),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  value,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.getTextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: tokens.textPrimary,
+                  ),
                 ),
-              ),
-              Text(
-                label,
-                style: context.getTextStyle(
-                  fontSize: 10,
-                  color: tokens.textSecondary,
+                Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.getTextStyle(
+                    fontSize: 10,
+                    color: tokens.textSecondary,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
